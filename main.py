@@ -20,22 +20,33 @@ def topo(a, c, start, end):
 
 
 x = [i for i in range(10000)]
-# y=topo(100,50,3000,7000)
+y=topo(100,500,0,10000)
 fig, axs = plt.subplots(1)
 # for i in range(100, 2000, 300):
     # axs.plot(x, topo(i, 500, 0, 10000), 'black',linewidth=1)
 # axs.set_ylim(ymin=0, ymax=15000)
 # plt.show()
 filename='specfem2d/EXAMPLES' \
-         '/simple_topography_and_also_a_simple_fluid_layer/DATA/interfaces_simple_topo_curved.dat '
-
+         '/simple_topography_and_also_a_simple_fluid_layer/DATA/topo.dat'
+print(max(y))
 f=open(filename,'w')
 f.truncate(0)
-
-sys.exit()g
+f.write("3 \n")
+f.write("10000\n")
+for i in range(10000):
+    f.write(str(i)+" "+str(0)+'\n')
+f.write("10000\n")
+for i in range(10000):
+    f.write(str(i)+" "+str(9000)+'\n')
+f.write("10000\n")
+for i in range(10000):
+    f.write(str(i) + " " + str(y[i]) + '\n')
+f.write("200\n40")
+f.close()
+# sys.exit()
 #Running the simulations
 os.system('''
 cd ./specfem2d/EXAMPLES/simple_topography_and_also_a_simple_fluid_layer
 ./run_this_example.sh
-cp 
+
 ''')
