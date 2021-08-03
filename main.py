@@ -1,7 +1,6 @@
 import math
 import os
 import sys
-
 import numpy as np
 import matplotlib.pyplot as plt
 import subprocess
@@ -31,9 +30,9 @@ filename='specfem2d/EXAMPLES' \
          '/simple_topography_and_also_a_simple_fluid_layer/DATA/interfaces_simple_topo_curved.dat '
 
 f=open(filename,'w')
-print(f)
+f.truncate(0)
 
-sys.exit()
+sys.exit()g
 #Running the simulations
 os.system('''
 cd ./specfem2d/EXAMPLES/simple_topography_and_also_a_simple_fluid_layer
