@@ -42,7 +42,7 @@ def delete_all_directories():
     for i in range(min_height,max_height,steps_to_height):
         cmd_to_delete='rm -r ' + 'height_' + str(i)
         os.system(cmd_to_delete)
-delete_all_directories()
+# delete_all_directories()
 
 def run_simulations_with_topo():
     for j in range(min_height, max_height,steps_to_height):  # min to max topography range
@@ -74,7 +74,7 @@ def run_simulations_with_topo():
         ''')
         os.system(cmd_to_make_new_dir)
         os.system(cmd_to_copy_files)
-run_simulations_with_topo()
+# run_simulations_with_topo()
 #reading files
 for i in range(1000, 3000, 300):  # max_height_range
     folder_name = 'height_' + str(i)
@@ -113,5 +113,24 @@ for i in range(1000, 3000, 300):  # max_height_range
                 line_y.append(float(b))
             data_Z.append([line_x,line_y])
         f.close()
+    fig_plot,axs_plots=plt.subplots(10,sharex=True,gridspec_kw={'hspace':0})
+    for k in range(10):
+        axs_plots[k].plot(data_X[k][0],data_X[k][1],color='b',linewidth=.5)
+        axs_plots[k].set_ylabel(str(k+1),fontsize=6)
+        axs_plots[k].spines["top"].set_visible(False)
+        axs_plots[k].spines["bottom"].set_visible(False)
+        axs_plots[k].set_yticks([])
+    plt.xlabel("Time")
+    plt.savefig(str(i)+'_X_'+'.png')
+    plt.cla()
+    plt.clf()
+    for k in range(10):
+        axs_plots[k].plot(data_Z[k][0], data_Z[k][1], color='b', linewidth=.5)
+        axs_plots[k].set_ylabel(str(k + 1), fontsize=6)
+        axs_plots[k].spines["top"].set_visible(False)
+        axs_plots[k].spines["bottom"].set_visible(False)
+        axs_plots[k].set_yticks([])
+    plt.xlabel("Time")
+    plt.savefig(str(i) + '_Z_' + '.png')
 
 
