@@ -59,7 +59,7 @@ def run_simulations_with_topo():
         f.write("10000\n")
         for i in range(10000):
             f.write(str(i) + " " + str(y[i]) + '\n')
-        f.write("200\n40")
+        f.write("200\n20")
         f.close()
         cmd_to_make_new_dir = 'mkdir ' + 'height_' + str(j)
         cmd_to_copy_files = 'cp ./specfem2d/EXAMPLES/simple_topography_and_also_a_simple_fluid_layer/OUTPUT_FILES/*.semd ./height_' + str(
@@ -115,22 +115,20 @@ for i in range(1000, 3000, 300):  # max_height_range
         f.close()
     fig_plot,axs_plots=plt.subplots(10,sharex=True,gridspec_kw={'hspace':0})
     for k in range(10):
-        axs_plots[k].plot(data_X[k][0],data_X[k][1],color='b',linewidth=.5)
+        axs_plots[k].plot(data_X[k][0],data_X[k][1],color='black',linewidth=.5)
         axs_plots[k].set_ylabel(str(k+1),fontsize=6)
         axs_plots[k].spines["top"].set_visible(False)
         axs_plots[k].spines["bottom"].set_visible(False)
         axs_plots[k].set_yticks([])
     plt.xlabel("Time")
     plt.savefig(str(i)+'_X_'+'.png')
-    plt.cla()
-    plt.clf()
+    plt.close()
+    fig_plot,axs_plots=plt.subplots(10,sharex=True,gridspec_kw={'hspace':0})
     for k in range(10):
-        axs_plots[k].plot(data_Z[k][0], data_Z[k][1], color='b', linewidth=.5)
+        axs_plots[k].plot(data_Z[k][0], data_Z[k][1], color='black', linewidth=.5)
         axs_plots[k].set_ylabel(str(k + 1), fontsize=6)
         axs_plots[k].spines["top"].set_visible(False)
         axs_plots[k].spines["bottom"].set_visible(False)
         axs_plots[k].set_yticks([])
     plt.xlabel("Time")
     plt.savefig(str(i) + '_Z_' + '.png')
-
-
